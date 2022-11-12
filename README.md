@@ -28,7 +28,7 @@ mkdir build
 cmake -B build .
 ```
 
-### ### Navigate to build
+### Navigate to build
 
 ```js
 cd build
@@ -43,7 +43,31 @@ cmake .. -DCROW_BUILD_EXAMPLES=OFF -DCROW_BUILD_TESTS=OFF
 ```js
 sudo cmake install
 ```
-### Run 
+
+### Create main.cpp
+
+```js
+
+#include <crow.h>
+using namespace std;
+int main()
+{
+    crow::SimpleApp app;
+    CROW_ROUTE(app, "/")
+    ([]()
+     { return "Hello world"; });
+    app.port(18080).multithreaded().run();
+    return 0;
+}
+
+```
+
+### Run
+
 ```js
 g++ main.cpp -lpthread
+```
+
+```js
+./a.out
 ```
